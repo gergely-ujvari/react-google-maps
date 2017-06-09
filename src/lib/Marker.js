@@ -12,6 +12,7 @@ import {
   MARKER,
   ANCHOR,
   MARKER_CLUSTERER,
+  MARKER_SPIDERFIER,
 } from "./constants";
 
 import {
@@ -70,6 +71,8 @@ const eventMap = {
   onAnimationChanged: `animation_changed`,
 
   onClick: `click`,
+
+  onSpiderClick: `spider_click`,
 
   onClickableChanged: `clickable_changed`,
 
@@ -212,12 +215,19 @@ export default _.flowRight(
         this.props
       )
     );
-    const markerClusterer = this.context[MARKER_CLUSTERER];
-    if (markerClusterer) {
-      markerClusterer.addMarker(marker, !!this.props.noRedraw);
+
+    const markerSpiderfier = this.context[MARKER_SPIDERFIER];
+    if (markerSpiderfier) {
+      markerSpiderfier.addMarker(marker);
     } else {
-      marker.setMap(this.context[MAP]);
+      const markerClusterer = this.context[MARKER_CLUSTERER];
+      if (markerClusterer) {
+        markerClusterer.addMarker(marker, !!this.props.noRedraw);
+     } else {
+       marker.setMap(this.context[MAP]);
+     }
     }
+
     return {
       [MARKER]: marker,
     };
@@ -232,11 +242,17 @@ export default _.flowRight(
   componentWillUnmount() {
     const marker = getInstanceFromComponent(this);
     if (marker) {
-      const markerClusterer = this.context[MARKER_CLUSTERER];
-      if (markerClusterer) {
-        markerClusterer.removeMarker(marker, !!this.props.noRedraw);
+      const markerSpiderfier = this.context[MARKER_SPIDERFIER];
+      if (markerSpiderfier) {
+        markerSpiderfier.removeMarker(marker);
+      } else {
+        const markerClusterer = this.context[MARKER_CLUSTERER];
+        if (markerClusterer) {
+          markerClusterer.removeMarker(marker, !!this.props.noRedraw);
+        }
+
+        marker.setMap(null);
       }
-      marker.setMap(null);
     }
   },
 
