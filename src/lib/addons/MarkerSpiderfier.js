@@ -6,7 +6,7 @@ import createReactClass from "create-react-class";
 
 import React from "react";
 
-import "./oms.min";
+require(`./oms.min`);
 
 import {
   MAP,
@@ -83,7 +83,7 @@ export default _.flowRight(
 
   getInitialState() {
     // http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclustererplus/docs/reference.html#events
-    const markerSpiderfier = new OverlappingMarkerSpiderfier(
+    const markerSpiderfier = new window.OverlappingMarkerSpiderfier(
       this.context[MAP],
       collectUncontrolledAndControlledProps(
         defaultUncontrolledPropTypes,
@@ -98,21 +98,34 @@ export default _.flowRight(
 
   getChildContext() {
     const markerSpiderfier = getInstanceFromComponent(this);
+
     return {
       [ANCHOR]: markerSpiderfier,
       [MARKER_SPIDERFIER]: markerSpiderfier,
     };
   },
 
+  componentDidMount() {
+    const markerSpiderfier = getInstanceFromComponent(this);
+    if (this.props.onClick && markerSpiderfier) {
+      markerSpiderfier.addListener(`click`, this.props.onClick);
+    }
+  },
+
   componentDidUpdate() {
-//    const markerSpiderfier = getInstanceFromComponent(this);
-//    markerClusterer.repaint();
+   const markerSpiderfier = getInstanceFromComponent(this);
+   if (this.props.onClick && markerSpiderfier) {
+     markerSpiderfier.addListener(`click`, this.props.onClick);
+   }
   },
 
   componentWillUnmount() {
     const markerSpiderfier = getInstanceFromComponent(this);
     if (markerSpiderfier) {
       markerSpiderfier.removeAllMarkers();
+      if (this.props.onClick) {
+        markerSpiderfier.removeListener(`click`, this.props.onClick);
+      }
     }
   },
 

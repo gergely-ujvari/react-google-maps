@@ -200,6 +200,7 @@ export default _.flowRight(
   contextTypes: {
     [MAP]: PropTypes.object,
     [MARKER_CLUSTERER]: PropTypes.object,
+    [MARKER_SPIDERFIER]: PropTypes.object,
   },
 
   childContextTypes: {
