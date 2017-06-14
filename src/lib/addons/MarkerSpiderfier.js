@@ -48,8 +48,6 @@ const controlledPropTypes = {
 const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(controlledPropTypes);
 
 const eventMap = {
-  onClick: `click`,
-  onFormat: `format`,
 };
 
 const publicMethodMap = {
@@ -113,6 +111,9 @@ export default _.flowRight(
     if (this.props.onClick && markerSpiderfier) {
       markerSpiderfier.addListener(`click`, this.props.onClick);
     }
+    if (this.props.onFormat && markerSpiderfier) {
+      markerSpiderfier.addListener(`format`, this.props.onFormat);
+    }
   },
 
   componentDidUpdate() {
@@ -120,6 +121,9 @@ export default _.flowRight(
    if (this.props.onClick && markerSpiderfier) {
      markerSpiderfier.addListener(`click`, this.props.onClick);
    }
+    if (this.props.onFormat && markerSpiderfier) {
+      markerSpiderfier.addListener(`format`, this.props.onFormat);
+    }
   },
 
   componentWillUnmount() {
@@ -128,6 +132,9 @@ export default _.flowRight(
       markerSpiderfier.removeAllMarkers();
       if (this.props.onClick) {
         markerSpiderfier.removeListener(`click`, this.props.onClick);
+      }
+      if (this.props.onFormat) {
+        markerSpiderfier.removeListener(`format`, this.props.onFormat);
       }
     }
   },
