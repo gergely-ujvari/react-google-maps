@@ -48,10 +48,13 @@ const controlledPropTypes = {
 const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(controlledPropTypes);
 
 const eventMap = {
+  onClick: `click`,
+  onFormat: `format`,
 };
 
 const publicMethodMap = {
   addListener(markerSpiderfier) { return markerSpiderfier.addListener(); },
+  getMarkerStatus(markerSpiderfier) { return markerSpiderfier.markerStatus; },
 };
 
 const controlledPropUpdaterMap = {
