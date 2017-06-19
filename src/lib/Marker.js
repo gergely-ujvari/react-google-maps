@@ -106,6 +106,8 @@ const eventMap = {
 
   onShapeChanged: `shape_changed`,
 
+  onSpiderFormat: `spider_format`,
+
   onTitleChanged: `title_changed`,
 
   onVisibleChanged: `visible_changed`,
