@@ -16,7 +16,7 @@ import {
   default as enhanceElement,
 } from "../enhanceElement";
 
-import * as helpers from "../utils/autocompleteHelper";
+import * as helpers from "../utils/AutocompleteHelper";
 
 const controlledPropTypes = {
   // NOTICE!!!!!!
