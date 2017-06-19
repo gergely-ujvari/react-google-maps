@@ -39,7 +39,7 @@ const defaultUncontrolledPropTypes = addDefaultPrefixToPropTypes(controlledPropT
 const eventMap = {
   // https://developers.google.com/maps/documentation/javascript/3.exp/reference#autocomplete
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
-  onPlacesChanged: `places_changed`,
+  onPlaceChanged: `place_changed`,
 };
 
 const publicMethodMap = {
