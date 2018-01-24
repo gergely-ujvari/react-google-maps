@@ -9,7 +9,13 @@ import {
   componentWillUnmount,
 } from "../utils/MapChildHelper"
 
-import { MAP, MARKER, ANCHOR, MARKER_CLUSTERER } from "../constants"
+import {
+  MAP,
+  MARKER,
+  ANCHOR,
+  MARKER_CLUSTERER,
+  MARKER_SPIDERFIER,
+} from "../constants"
 
 export const __jscodeshiftPlaceholder__ = `{
   "eventMapOverrides": {
@@ -20,7 +26,9 @@ export const __jscodeshiftPlaceholder__ = `{
     "onMouseOut": "mouseout",
     "onMouseOver": "mouseover",
     "onMouseUp": "mouseup",
-    "onRightClick": "rightclick"
+    "onRightClick": "rightclick",
+    "onSpiderClick": "spider_click",
+    "onSpiderFormat": "spider_format"
   },
   "getInstanceFromComponent": "this.state[MARKER]"
 }`
@@ -43,6 +51,7 @@ export class Marker extends React.PureComponent {
   static contextTypes = {
     [MAP]: PropTypes.object,
     [MARKER_CLUSTERER]: PropTypes.object,
+    [MARKER_SPIDERFIER]: PropTypes.object,
   }
 
   static childContextTypes = {
@@ -56,12 +65,19 @@ export class Marker extends React.PureComponent {
     super(props, context)
     const marker = new google.maps.Marker()
     construct(Marker.propTypes, updaterMap, this.props, marker)
-    const markerClusterer = this.context[MARKER_CLUSTERER]
-    if (markerClusterer) {
-      markerClusterer.addMarker(marker, !!this.props.noRedraw)
+
+    const markerSpiderfier = this.context[MARKER_SPIDERFIER]
+    if (markerSpiderfier) {
+      markerSpiderfier.addMarker(marker)
     } else {
-      marker.setMap(this.context[MAP])
+      const markerClusterer = this.context[MARKER_CLUSTERER]
+      if (markerClusterer) {
+        markerClusterer.addMarker(marker, !!this.props.noRedraw)
+      } else {
+        marker.setMap(this.context[MAP])
+      }
     }
+
     this.state = {
       [MARKER]: marker,
     }
@@ -91,9 +107,14 @@ export class Marker extends React.PureComponent {
     componentWillUnmount(this)
     const marker = this.state[MARKER]
     if (marker) {
-      const markerClusterer = this.context[MARKER_CLUSTERER]
-      if (markerClusterer) {
-        markerClusterer.removeMarker(marker, !!this.props.noRedraw)
+      const markerSpiderfier = this.context[MARKER_SPIDERFIER]
+      if (markerSpiderfier) {
+        markerSpiderfier.removeMarker(marker)
+      } else {
+        const markerClusterer = this.context[MARKER_CLUSTERER]
+        if (markerClusterer) {
+          markerClusterer.removeMarker(marker, !!this.props.noRedraw)
+        }
       }
       marker.setMap(null)
     }

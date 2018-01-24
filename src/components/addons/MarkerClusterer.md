@@ -18,7 +18,7 @@ const MapWithAMarkerClusterer = compose(
     containerElement: <div style={{ height: `400px` }} />,
     mapElement: <div style={{ height: `100%` }} />,
   }),
-  withHandlers({
+  withHandlers({                                                                                                                                            
     onMarkerClustererClick: () => (markerClusterer) => {
       const clickedMarkers = markerClusterer.getMarkers()
       console.log(`Current clicked markers length: ${clickedMarkers.length}`)

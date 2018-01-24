@@ -1,6 +1,6 @@
 {
   "name": "react-google-maps",
-  "version": "9.4.5",
+  "version": "9.4.5b",
   "description": "React.js Google Maps integration component",
   "license": "MIT",
   "author": {
@@ -107,6 +107,7 @@
     "lodash": "^4.16.2",
     "marker-clusterer-plus": "^2.1.4",
     "markerwithlabel": "^2.0.1",
+    "npm-overlapping-marker-spiderfier": "^1.0.3",
     "prop-types": "^15.5.8",
     "recompose": "^0.26.0",
     "scriptjs": "^2.5.8",
