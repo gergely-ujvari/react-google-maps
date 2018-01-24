@@ -26,9 +26,9 @@ export const __jscodeshiftPlaceholder__ = `{
     "onMouseOut": "mouseout",
     "onMouseOver": "mouseover",
     "onMouseUp": "mouseup",
-    "onRightClick": "rightclick"
+    "onRightClick": "rightclick",
     "onSpiderClick": "spider_click",
-    "onSpiderFormat": "spider_format",
+    "onSpiderFormat": "spider_format"
   },
   "getInstanceFromComponent": "this.state[MARKER]"
 }`
