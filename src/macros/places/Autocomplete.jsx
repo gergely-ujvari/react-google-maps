@@ -22,7 +22,7 @@ export const __jscodeshiftPlaceholder__ = `{
 }`
 
 /**
- * A wrapper around `google.maps.places.AutoComplete` on the map
+ * A wrapper around `google.maps.places.Autocomplete` on the map
  *
  * @see https://developers.google.com/maps/documentation/javascript/reference#Autocomplete
  */
@@ -30,7 +30,7 @@ export class Autocomplete extends React.PureComponent {
   static propTypes = {
     __jscodeshiftPlaceholder__: null,
     /**
-     * Where to put `<AutoComplete>` inside a `<GoogleMap>`
+     * Where to put `<Autocomplete>` inside a `<GoogleMap>`
      *
      * @example google.maps.ControlPosition.TOP_LEFT
      * @type number
@@ -103,7 +103,7 @@ export class Autocomplete extends React.PureComponent {
       this.containerElement,
       this.props.options
     )
-    construct(AutoComplete.propTypes, updaterMap, this.props, autocomplete)
+    construct(Autocomplete.propTypes, updaterMap, this.props, autocomplete)
 
     this.setState({
       [AUTO_COMPLETE]: autocomplete,
