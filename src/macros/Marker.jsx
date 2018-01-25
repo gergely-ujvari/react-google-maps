@@ -51,6 +51,7 @@ export class Marker extends React.PureComponent {
   static contextTypes = {
     [MAP]: PropTypes.object,
     [MARKER_CLUSTERER]: PropTypes.object,
+    [MARKER_SPIDERFIER]: PropTypes.object,
   }
 
   static childContextTypes = {
