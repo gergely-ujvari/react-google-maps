@@ -204,7 +204,7 @@ export class MarkerSpiderfier extends React.PureComponent {
   }
 
   /*
-   * @see https://github.com/mahnunchik/markerclustererplus/blob/master/docs/reference.html
+   * @see https://github.com/jawj/OverlappingMarkerSpiderfier/blob/master/lib/oms.coffee
    */
   constructor(props, context) {
     super(props, context)
@@ -227,7 +227,7 @@ export class MarkerSpiderfier extends React.PureComponent {
   getChildContext() {
     const markerSpiderfier = this.state[MARKER_SPIDERFIER]
     return {
-      [ANCHOR]: markerClusterer,
+      [ANCHOR]: markerSpiderfier,
       [MARKER_SPIDERFIER]: markerSpiderfier,
     }
   }
