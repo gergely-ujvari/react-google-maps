@@ -234,6 +234,7 @@ export class MarkerSpiderfier extends React.PureComponent {
 
   componentDidMount() {
     componentDidMount(this, this.state[MARKER_SPIDERFIER], eventMap)
+    this.registerOwnEvents(this.props)
   }
 
   componentDidUpdate(prevProps) {
@@ -244,6 +245,9 @@ export class MarkerSpiderfier extends React.PureComponent {
       updaterMap,
       prevProps
     )
+
+    this.unregisterOwnEvents(prevProps)
+    this.registerOwnEvents(this.props)
   }
 
   componentWillUnmount() {
@@ -251,6 +255,29 @@ export class MarkerSpiderfier extends React.PureComponent {
     const markerSpiderfier = this.state[MARKER_SPIDERFIER]
     if (markerSpiderfier) {
       markerSpiderfier.removeAllMarkers()
+      this.unregisterOwnEvents(this.props)
+    }
+  }
+
+  registerOwnEvents(props) {
+    const markerSpiderfier = this.state[MARKER_SPIDERFIER]
+    if (markerSpiderfier) {
+      Object.keys(ownEventMap).forEach(e => {
+        if (props[e]) {
+          markerSpiderfier.addListener(ownEventMap[e], props[e])
+        }
+      })
+    }
+  }
+
+  unregisterOwnEvents(props) {
+    const markerSpiderfier = this.state[MARKER_SPIDERFIER]
+    if (markerSpiderfier) {
+      Object.keys(ownEventMap).forEach(e => {
+        if (props[e]) {
+          markerSpiderfier.removeListener(ownEventMap[e], props[e])
+        }
+      })
     }
   }
 
@@ -262,7 +289,9 @@ export class MarkerSpiderfier extends React.PureComponent {
 
 export default MarkerSpiderfier
 
-const eventMap = {
+const eventMap = {}
+
+const ownEventMap = {
   onClick: "click",
   onFormat: "format",
 }
