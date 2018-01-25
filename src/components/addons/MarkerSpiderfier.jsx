@@ -266,72 +266,75 @@ const eventMap = {
   onFormat: "format",
 }
 
+/*
+ * @see https://github.com/jawj/OverlappingMarkerSpiderfier/blob/master/lib/oms.coffee
+ */
 const updaterMap = {
   basicFormatEvents(instance, basicFormatEvents) {
-    instance.setBasicFormatEvents(basicFormatEvents)
+    instance.basicFormatEvents = basicFormatEvents
   },
 
   circleFootSeparation(instance, circleFootSeparation) {
-    instance.setCircleFootSeparation(circleFootSeparation)
+    instance.circleFootSeparation = circleFootSeparation
   },
 
   circleSpiralSwitchover(instance, circleSpiralSwitchover) {
-    instance.setCircleSpiralSwitchover(circleSpiralSwitchover)
+    instance.circleSpiralSwitchover = circleSpiralSwitchover
   },
 
   circleStartAngle(instance, circleStartAngle) {
-    instance.setCircleStartAngle(circleStartAngle)
+    instance.circleStartAngle = circleStartAngle
   },
 
   highlightedLegZIndex(instance, highlightedLegZIndex) {
-    instance.setHighlightedLegZIndex(highlightedLegZIndex)
+    instance.highlightedLegZIndex = highlightedLegZIndex
   },
 
   ignoreMapClick(instance, ignoreMapClick) {
-    instance.setIgnoreMapClick(ignoreMapClick)
+    instance.ignoreMapClick = ignoreMapClick
   },
 
   keepSpiderfied(instance, keepSpiderfied) {
-    instance.setKeepSpiderfied(keepSpiderfied)
+    instance.keepSpiderfied = keepSpiderfied
   },
 
   legColors(instance, legColors) {
-    instance.setLegColors(legColors)
+    instance.legColors = legColors
   },
 
   legWeigth(instance, legWeigth) {
-    instance.setLegWeigth(legWeigth)
+    instance.legWeigth = legWeigth
   },
 
   markersWontHide(instance, markersWontHide) {
-    instance.setMarkersWontHide(markersWontHide)
+    instance.markersWontHide = markersWontHide
   },
 
   markersWontMove(instance, markersWontMove) {
-    instance.setMarkersWontMove(markersWontMove)
+    instance.markersWontMove = markersWontMove
   },
 
   nearbyDistance(instance, nearbyDistance) {
-    instance.setNearbyDistance(nearbyDistance)
+    instance.nearbyDistance = nearbyDistance
   },
 
   spiralFootSeparation(instance, spiralFootSeparation) {
-    instance.setSpiralFootSeparation(spiralFootSeparation)
+    instance.spiralFootSeparation = spiralFootSeparation
   },
 
   spiralLengthFactor(instance, spiralLengthFactor) {
-    instance.setSpiralLengthFactor(spiralLengthFactor)
+    instance.spiralLengthFactor = spiralLengthFactor
   },
 
   spiralLengthStart(instance, spiralLengthStart) {
-    instance.setSpiralLengthStart(spiralLengthStart)
+    instance.spiralLengthStart = spiralLengthStart
   },
 
   spiderfiedZIndex(instance, spiderfiedZIndex) {
-    instance.setSpiderfiedZIndex(spiderfiedZIndex)
+    instance.spiderfiedZIndex = spiderfiedZIndex
   },
 
   usualLegZIndex(instance, usualLegZIndex) {
-    instance.setUsualLegZIndex(usualLegZIndex)
+    instance.usualLegZIndex = usualLegZIndex
   },
 }
