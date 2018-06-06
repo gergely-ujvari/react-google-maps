@@ -312,15 +312,18 @@ const updaterMap = {
   },
 
   imageExtension(instance, imageExtension) {
+    instance.setupStyles_()
     instance.setImageExtension(imageExtension)
   },
 
   imagePath(instance, imagePath) {
     instance.setImagePath(imagePath)
+    instance.setupStyles_()
   },
 
   imageSizes(instance, imageSizes) {
     instance.setImageSizes(imageSizes)
+    instance.setupStyles_()
   },
 
   maxZoom(instance, maxZoom) {
