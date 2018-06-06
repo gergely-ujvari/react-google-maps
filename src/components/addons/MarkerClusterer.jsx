@@ -312,17 +312,20 @@ const updaterMap = {
   },
 
   imageExtension(instance, imageExtension) {
-    instance.setupStyles_()
     instance.setImageExtension(imageExtension)
+    instance.styles_ = []
+    instance.setupStyles_()
   },
 
   imagePath(instance, imagePath) {
     instance.setImagePath(imagePath)
+    instance.styles_ = []
     instance.setupStyles_()
   },
 
   imageSizes(instance, imageSizes) {
     instance.setImageSizes(imageSizes)
+    instance.styles_ = []
     instance.setupStyles_()
   },
 
