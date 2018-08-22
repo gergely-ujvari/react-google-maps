@@ -208,6 +208,25 @@ export class MarkerSpiderfier extends React.PureComponent {
    */
   constructor(props, context) {
     super(props, context)
+    console.log("spiderifier constructor")
+    console.log("map", this.context[MAP])
+    const markerSpiderfier = new window.OverlappingMarkerSpiderfier(
+      this.context[MAP]
+    )
+
+    construct(
+      MarkerSpiderfier.propTypes,
+      updaterMap,
+      this.props,
+      markerSpiderfier
+    )
+
+    this.state = {
+      [MARKER_SPIDERFIER]: markerSpiderfier,
+    }
+  }
+
+  setupSpiderifier() {
     const markerSpiderfier = new window.OverlappingMarkerSpiderfier(
       this.context[MAP]
     )
