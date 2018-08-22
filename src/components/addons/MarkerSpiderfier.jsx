@@ -208,8 +208,6 @@ export class MarkerSpiderfier extends React.PureComponent {
    */
   constructor(props, context) {
     super(props, context)
-    console.log("spiderifier constructor")
-    console.log("map", this.context[MAP])
     const markerSpiderfier = new window.OverlappingMarkerSpiderfier(
       this.context[MAP]
     )
@@ -230,9 +228,7 @@ export class MarkerSpiderfier extends React.PureComponent {
     }
     markerSpiderfier.constructor.a.prototype = new google.maps.OverlayView()
     markerSpiderfier.constructor.a.prototype["draw"] = function() {}
-    markerSpiderfier.g = new markerSpiderfier.constructor.a(
-      _this.context[_constants.MAP]
-    )
+    markerSpiderfier.g = new markerSpiderfier.constructor.a(this.context[MAP])
 
     this.state = {
       [MARKER_SPIDERFIER]: markerSpiderfier,
