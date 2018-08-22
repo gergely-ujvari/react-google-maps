@@ -221,21 +221,17 @@ export class MarkerSpiderfier extends React.PureComponent {
       markerSpiderfier
     )
 
-    this.state = {
-      [MARKER_SPIDERFIER]: markerSpiderfier,
+    // XXX:  See https://github.com/jawj/OverlappingMarkerSpiderfier/blob/master/lib/oms.coffee#L78
+    // Overlapping markerSpiderifier uses a hack to get a projection
+    // which is no longer working after the google map is loaded out and a new map is loaded
+    // This hacky code emulates that function and reinitializes the OverlayView
+    markerSpiderfier.constructor.a = function(map) {
+      return this.setMap(map)
     }
-  }
-
-  setupSpiderifier() {
-    const markerSpiderfier = new window.OverlappingMarkerSpiderfier(
-      this.context[MAP]
-    )
-
-    construct(
-      MarkerSpiderfier.propTypes,
-      updaterMap,
-      this.props,
-      markerSpiderfier
+    markerSpiderfier.constructor.a.prototype = new google.maps.OverlayView()
+    markerSpiderfier.constructor.a.prototype["draw"] = function() {}
+    markerSpiderfier.g = new markerSpiderfier.constructor.a(
+      _this.context[_constants.MAP]
     )
 
     this.state = {
@@ -275,6 +271,8 @@ export class MarkerSpiderfier extends React.PureComponent {
     if (markerSpiderfier) {
       markerSpiderfier.removeAllMarkers()
       this.unregisterOwnEvents(this.props)
+      markerSpiderfier.projHelper = null
+      this.setState({ [MARKER_SPIDERFIER]: null })
     }
   }
 
